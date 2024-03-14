@@ -12,27 +12,41 @@ const UserSchema = mongoose.Schema(
         },
         firstname: {
             type: String,
-            required: true
+            required:true, 
         },
         lastname : {
             type: String,
-            required: true
+            required:true, 
         },
         isAdmin : {
             type: Boolean,
             default: false,
         },
-        profilePicture: String,
-        coverPicture: String,
-        about: String,
-        livesin: String,
-        worksAt: String,
-        relationship: String,
+        profilePicture: {
+            type :String,
+            default :"",
+        },
+        coverPicture:{
+            type : String,
+            default : "",
+        },
+        livesIn:{
+            type :String,
+            default : ""
+        },
+        worksAt: {
+            type :String,
+            default:"",
+        },
+        relationshipStatus: {
+            type :String,
+            default:"",
+        },
         followers: [] ,
         following: []
     },
     {timestamps: true}
-)
+);
 
 const UserModel= mongoose.model("Users", UserSchema);
-export default UserModel
+export default UserModel;

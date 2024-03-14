@@ -2,7 +2,7 @@ import PostModel from "../Models/postModel.js";
 import mongoose from "mongoose";
 import UserModel from "../Models/userModel.js";
 
-// Creat new Post
+
 export const createPost = async (req, res) => {
   const newPost = new PostModel(req.body);
 
@@ -14,7 +14,7 @@ export const createPost = async (req, res) => {
   }
 };
 
-// Get a post
+
 
 export const getPost = async (req, res) => {
   const id = req.params.id;
@@ -27,7 +27,6 @@ export const getPost = async (req, res) => {
   }
 };
 
-// Update a post
 export const updatePost = async (req, res) => {
   const postId = req.params.id;
   const { userId } = req.body;
@@ -45,7 +44,7 @@ export const updatePost = async (req, res) => {
   }
 };
 
-// Delete a post
+
 export const deletePost = async (req, res) => {
   const id = req.params.id;
   const { userId } = req.body;
@@ -63,7 +62,7 @@ export const deletePost = async (req, res) => {
   }
 };
 
-// like/dislike a post
+
 export const likePost = async (req, res) => {
   const id = req.params.id;
   const { userId } = req.body;
@@ -82,7 +81,7 @@ export const likePost = async (req, res) => {
   }
 };
 
-// Get Timeline POsts
+
 export const getTimelinePosts = async (req, res) => {
   const userId = req.params.id;
 

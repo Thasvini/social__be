@@ -1,6 +1,6 @@
 import UserModel from "../Models/userModel.js";
 import bcrypt from "bcrypt";
-// get a User
+
 export const getUser = async (req, res) => {
   const id = req.params.id;
 
@@ -19,7 +19,7 @@ export const getUser = async (req, res) => {
   }
 };
 
-// update a user
+
 export const updateUser = async (req, res) => {
   const id = req.params.id;
   const { currentUserId, currentUserAdminStatus, password } = req.body;
@@ -44,7 +44,7 @@ export const updateUser = async (req, res) => {
   }
 };
 
-// Delete user
+
 export const deleteUser = async (req, res) => {
   const id = req.params.id;
 
@@ -62,7 +62,7 @@ export const deleteUser = async (req, res) => {
   }
 };
 
-// Follow a User
+
 export const followUser = async (req, res) => {
   const id = req.params.id;
 
@@ -88,7 +88,7 @@ export const followUser = async (req, res) => {
   }
 };
 
-// UnFollow a User
+
 export const UnFollowUser = async (req, res) => {
   const id = req.params.id;
 
@@ -111,5 +111,33 @@ export const UnFollowUser = async (req, res) => {
     } catch (error) {
       res.status(500).json(error);
     }
+  }
+};
+
+
+export const updateUserInfo = async (req, res) => {
+  const userId = req.params.userId; 
+  const { firstName, lastName, worksAt, livesIn, country, relationshipStatus } = req.body;
+
+  try {
+    
+    const user = await UserModel.findById(userId);
+    
+    
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.worksAt = worksAt;
+    user.livesIn = livesIn;
+    user.country = country;
+    user.relationshipStatus = relationshipStatus;
+
+    
+    await user.save();
+
+    
+    res.status(200).json({ message: "User information updated successfully" });
+  } catch (error) {
+    
+    res.status(500).json({ message: error.message });
   }
 };
